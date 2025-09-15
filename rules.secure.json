@@ -1,0 +1,20 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid == $uid || auth.token.role == 'teacher')",
+        ".write": "auth != null && auth.token.role == 'teacher'"
+      }
+    },
+    "rfid_logs": {
+      ".read": "auth != null && auth.token.role == 'teacher'",
+      ".write": "auth != null"
+    },
+    "checkins": {
+      ".read": "auth != null",
+      ".write": "auth != null && auth.token.role == 'teacher'"
+    }
+  }
+}
